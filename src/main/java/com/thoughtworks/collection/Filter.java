@@ -2,30 +2,34 @@ package com.thoughtworks.collection;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Filter {
 
-    List<Integer>  array;
+  List<Integer> array;
 
-    public Filter(List<Integer> array) {
-     this.array = array;
-    }
+  public Filter(List<Integer> array) {
+    this.array = array;
+  }
 
-    public List<Integer> filterEven() {
-        throw new NotImplementedException();
-    }
+  public List<Integer> filterEven() {
+    return this.array.stream().filter(item -> item % 2 == 0).collect(Collectors.toList());
+  }
 
-    public List<Integer> filterMultipleOfThree() {
-        throw new NotImplementedException();
-    }
+  public List<Integer> filterMultipleOfThree() {
+    return this.array.stream().filter(item -> item % 3 == 0).collect(Collectors.toList());
+  }
 
-    public List<Integer> getCommonElements(List<Integer> firstList, List<Integer> secondList) {
-        throw new NotImplementedException();
-    }
+  public List<Integer> getCommonElements(List<Integer> firstList, List<Integer> secondList) {
+    List<Integer> first = new ArrayList<>(firstList);
+    first.retainAll(secondList);
+    return first;
+  }
 
-    public List<Integer> getDifferentElements() {
-        throw new NotImplementedException();
-    }
+  public List<Integer> getDifferentElements() {
+    return this.array.stream().distinct().collect(Collectors.toList());
+  }
 }
